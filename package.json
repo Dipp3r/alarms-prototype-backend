@@ -1,0 +1,16 @@
+{
+  "scripts": {
+    "serve": "nodemon server.js",
+    "migrate": "node migrations/migrate-alarms.js",
+    "seed": "node seeder/seed-alarms.js",
+    "undo-seed": "node seeder/undo-seed-alarms.js",
+    "undo-migrate": "node migrations/undo-migrate-alarms.js"
+  },
+  "dependencies": {
+    "@faker-js/faker": "^8.4.1",
+    "body-parser": "^1.20.2",
+    "express": "^4.18.2",
+    "mongodb": "^6.3.0",
+    "nodemon": "^3.1.0"
+  }
+}
