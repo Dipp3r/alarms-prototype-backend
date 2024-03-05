@@ -5,10 +5,13 @@ const updateAlarm = require("./api/updateAlarm.js");
 const deleteAlarm = require("./api/deleteAlarm.js");
 const bodyParser = require('body-parser');
 const migrateAndSeed = require("./api/migrateSeed.js");
+const cors = require("cors");
 const app = express();
 const HTTP_PORT = 8000;
 
+
 app.use(bodyParser.json());
+app.use(cors());
 
 app.listen(HTTP_PORT, ()=>{
     console.log("The server is running on port http://localhost:"+HTTP_PORT);
