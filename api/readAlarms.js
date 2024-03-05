@@ -3,9 +3,9 @@ const { optimized_paginate,Paginate } = require("../utils/paginate.js");
 
 const getAlarms = async function(req,res){
     const db = await ConnectDB();
-    const {sortOrder,limit,pageSize,pages} = await req.body;
+    const {sortOrder,pageSize,pages,collectionName} = await req.body;
     try {
-        const alarms = await db.collection("alarms").find().sort(sortOrder).limit(limit).toArray();
+        const alarms = await db.collection(collectionName).find().sort(sortOrder).toArray();
         const pagintaed_alarms =  await optimized_paginate(alarms,pages,pageSize);
         res.json(pagintaed_alarms);
     } catch (error) {

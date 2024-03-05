@@ -10,12 +10,12 @@ async function migrate(collectionName){
     }
 }
 
-migrate("alarms").then(()=>{
-    console.log("Migration complete!");
-    process.exit(0);
-}).catch(err=>{
-    console.log("Migration error!: ",err);
-    process.exit(1);
-});
+// migrate("alarms").then(()=>{
+//     console.log("Migration complete!");
+//     process.exit(0);
+// }).catch(err=>{
+//     console.log("Migration error!: ",err);
+//     process.exit(1);
+// });
 
 module.exports = {migrate};
