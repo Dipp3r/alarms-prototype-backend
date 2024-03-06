@@ -6,6 +6,7 @@ const deleteAlarm = require("./api/deleteAlarm.js");
 const bodyParser = require('body-parser');
 const migrateAndSeed = require("./api/migrateSeed.js");
 const cors = require("cors");
+const getFieldNames = require("./api/fieldNames.js");
 const app = express();
 const HTTP_PORT = 8000;
 
@@ -30,3 +31,5 @@ app.post("/updatealarm", updateAlarm);
 app.post("/deletealarm", deleteAlarm);
 
 app.post("/migrate-seed", migrateAndSeed);
+
+app.post("/get-field-names", getFieldNames);
