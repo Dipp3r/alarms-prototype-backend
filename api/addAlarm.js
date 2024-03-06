@@ -10,7 +10,7 @@ const addAlarm = async function(req,res){
     }
     try {
         const row = await db.collection(collectionName).insertOne(attributes);
-        res.json({status:true, newDoc:row});
+        res.json({status:true, id:row.insertedId});
     } catch (error) {
         console.log(error);
     }

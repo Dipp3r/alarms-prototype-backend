@@ -3,15 +3,19 @@ const {ConnectDB} = require("../db-connection");
 
 const updateAlarm = async function(req,res){
     const db = await ConnectDB();
-    const {id,attributes} = req.body;
+    const {collectionName,attributes} = req.body;
     try {
-        const row = await db.collection("alarms").updateOne(
-            {_id:new ObjectId(id)},
+        let row = await db.collection(collectionName).find({}).project({_id:1}).toArray();
+        row = row.sort(()=>Math.random()-0.5);
+        await db.collection(collectionName).updateOne(
+            {
+                _id:new ObjectId(row[0]["_id"])
+            },
             {
                 $set: attributes,
             }
         );
-        res.json({status:"ok",alarm:row});
+        res.json({status:"ok",id:row[0]["_id"]});
     } catch (error) {
         console.log(error);
     }

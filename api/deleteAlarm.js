@@ -3,12 +3,14 @@ const {ConnectDB} = require("../db-connection.js");
 
 const deleteAlarm = async function(req,res){
     const db = await ConnectDB();
-    const {id} = req.body;
+    const {collectionName} = req.body;
     try {
-        const row = await db.collection('alarms').deleteOne({
-            _id: new ObjectId(id)
+        let row = await db.collection(collectionName).find({}).project({_id:1}).toArray();
+        row = row.sort(()=>Math.random()-0.5);
+        await db.collection(collectionName).deleteOne({
+            _id: new ObjectId(row[0]["_id"])
         })
-        res.json({status:"ok",alarm:row});
+        res.json({status:"ok",id:row[0]["_id"]});
     } catch (error) {
         console.log(error);
     }

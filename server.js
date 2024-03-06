@@ -26,7 +26,7 @@ app.post('/alarms', getAlarms);
 
 app.post("/addalarm", addAlarm);
 
-app.post("/updatealarm", updateAlarm);
+app.put("/updatealarm", updateAlarm);
 
 app.post("/deletealarm", deleteAlarm);
 
